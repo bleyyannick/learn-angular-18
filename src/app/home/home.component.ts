@@ -28,14 +28,17 @@ import { HousingLocation } from '../housing-location';
 export class HomeComponent {
 
   housingService: HousingService = inject(HousingService);
-  housingLocationList: HousingLocation[];
-  filteredLocationList: HousingLocation[] = [];
+  housingLocationList!: HousingLocation[];
+  filteredLocationList: HousingLocation[] = [] ;
 
   readonly baseUrl = 'https://angular.dev/assets/tutorials/common';
 
   constructor() {
-    this.housingLocationList = this.housingService.getHousingLocations();
-    this.filteredLocationList = this.housingLocationList;
+    this.housingService.getAllHousingLocations()
+      .then((housingLocationList: HousingLocation[]) => {
+            this.housingLocationList = housingLocationList;
+            this.filteredLocationList = housingLocationList;
+          });
   }
 
   filterResults(city: string) {
