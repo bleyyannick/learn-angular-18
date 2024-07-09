@@ -17,10 +17,10 @@ import { HousingLocation } from '../housing-location';
       </form>
     </section>
     <section class="results">
-      <app-housing-location
-        *ngFor="let housingLoc of filteredLocationList"
-        [housingLocation]="housingLoc"
-      ></app-housing-location>
+     @for( housingLocation of filteredLocationList; track housingLocation) {
+      <app-housing-location [housingLocation]="housingLocation">
+        </app-housing-location>
+     }
     </section>
   `,
   styleUrls: ['./home.component.css'],
